@@ -1,94 +1,126 @@
-# tours-and-travelling
-Tours and Travelling
-Description
-The "Tours and Travelling" project is designed to streamline and enhance the travel planning experience. This platform provides users with comprehensive travel packages, detailed itineraries, booking capabilities, and travel guides. Whether you're looking for adventure, relaxation, or cultural exploration, our application offers a variety of options to cater to different preferences and budgets.
 
-# Table of Contents
-Installation
 
-Usage
+---
 
-Contributing
+# Tour and Traveling
 
-License
+## Project Overview
 
-Authors
+Tour and Traveling is a mern-stack web application designed to help users discover and plan their next travel adventures. Whether you're looking for destination inspiration, travel tips, or booking accommodations, TravelWorld has you covered.
 
-Acknowledgments
+## Authors
+   **Training project (Batch-2)**
 
-Installation
+- **Aaqila Jamal**
+  
+- **Yashawi Dwivedi**
 
-To set up the project locally, follow these steps:
+- **Anshika Yadav**
 
-Clone the repository:
+## Features
 
-git clone https://github.com/Aaqilajamal/tours-and-travelling.git
+- User authentication 
+- Destination listings
+- Search and filter
+- booking system
+- Responsive design
 
-cd tours-and-travelling
+## Technology Used
 
-Install the necessary dependencies:
+- **Frontend:**
+  - React.js 
+  - React router
+  - CSS 
+  
+  
+  
 
-npm install
+- **Backend:**
+  - Node.js
+  - Express.js
 
-Start the development server:
+- **Database:**
+  - MongoDB
 
-npm start
+- **Authentication:**
+  - JWT for secure authentication
 
-Usage
+## Getting Started
 
-Once the application is up and running, you can:
+### Prerequisites
 
-Browse various travel packages.
+Ensure you have the following installed:
 
-View detailed itineraries and travel guides.
+- Node.js
+- npm or yarn
+- MongoDB
+- Firebase account
 
-Book trips directly through the platform.
+### Installation
 
-Customize your travel plans to suit your preferences.
+1. Clone the repository:
+   ```bash
+   https://github.com/Aaqilajamal/tours-and-travelling
+   cd tours-and-travelling
+   https://github.com/yashi6306/TravelWorld
+   
+   ```
 
-Here are some example commands and screenshots to help you get started:
+2. Install the dependencies for both the client and server:
+   ```bash
+   cd client
+   npm install
+   cd ../server
+   npm install
+   ```
 
-# Example command to start the application
+3. Set up environment variables:
 
-npm start
+   Create a `.env` file in the `server` directory and add your MongoDB URI and JWT secret:
 
-# Contributing
+   ```plaintext
+   MONGODB_URI=your_mongodb_uri
+   JWT_SECRET=your_jwt_secret
+   ```
 
-We welcome contributions from the community! To contribute:
+   Create a `.env` file in the `client` directory and add your Firebase configuration:
 
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix:
+   ```plaintext
+   REACT_APP_FIREBASE_API_KEY=your_api_key
+   REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
+   REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+   REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+   REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+   REACT_APP_FIREBASE_APP_ID=your_app_id
+   ```
 
-git checkout -b feature/your-feature-name
+### Running the Application
 
-3. Make your changes and commit them with descriptive messages.
-4. Push your changes to your forked repository:
+1. Start the backend server:
+   ```bash
+   cd server
+   npm start
+   ```
 
-git push origin feature/your-feature-name
+2. Start the frontend development server:
+   ```bash
+   cd client
+   npm start
+   ```
 
-5. Open a pull request to the main repository.
+3. Open your browser and navigate to `http://localhost:3000` to see the application in action.
 
-   Please ensure your code adheres to our coding standards and includes relevant tests.
+## Contributing
 
-# License
-This project is licensed under the MIT License - see the LICENSE file for details.
+We welcome contributions to TravelWorld! Please follow these steps:
 
-# Authors
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature-branch`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature-branch`)
+5. Create a new Pull Request
 
-Aaqila Jamal 
 
-Yashaswi Dwivedi 
 
-Anshika Yadav 
-
-# Acknowledgments
-
-We would like to thank the following resources and individuals for their support and contributions:
-
-OpenWeather API for providing weather data.
-
-Unsplash for providing high-quality images.
-
-Our family and friends for their constant support and feedback.   
-
+---
 
