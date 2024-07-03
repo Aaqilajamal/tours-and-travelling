@@ -13,7 +13,7 @@ Tour and Traveling is a mern-stack web application designed to help users discov
 
 - **Aaqila Jamal**
   
-- **Yashawi Dwivedi**
+- **Yashaswi Dwivedi**
 
 - **Anshika Yadav**
 
