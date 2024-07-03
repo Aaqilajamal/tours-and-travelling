@@ -67,9 +67,9 @@ Ensure you have the following installed:
 
 2. Install the dependencies for both the frontend and backend:
    ```bash
-   cd client
+   cd frontend
    npm install
-   cd ../server
+   cd ../backend
    npm install
    ```
 
