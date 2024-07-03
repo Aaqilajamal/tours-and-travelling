@@ -40,7 +40,7 @@ Tour and Traveling is a mern-stack web application designed to help users discov
   - Express.js
 
 - **Database:**
-  - MongoDB
+  - MongoDB 
 
 - **Authentication:**
   - JWT for secure authentication
@@ -52,9 +52,8 @@ Tour and Traveling is a mern-stack web application designed to help users discov
 Ensure you have the following installed:
 
 - Node.js
-- npm or yarn
 - MongoDB
-- Firebase account
+- Mongodb Atlas
 
 ### Installation
 
@@ -66,7 +65,7 @@ Ensure you have the following installed:
    
    ```
 
-2. Install the dependencies for both the client and server:
+2. Install the dependencies for both the frontend and backend:
    ```bash
    cd client
    npm install
@@ -83,29 +82,24 @@ Ensure you have the following installed:
    JWT_SECRET=your_jwt_secret
    ```
 
-   Create a `.env` file in the `client` directory and add your Firebase configuration:
+   Create a `.env` file in the `backend` directory and add your configuration:
 
    ```plaintext
-   REACT_APP_FIREBASE_API_KEY=your_api_key
-   REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
-   REACT_APP_FIREBASE_PROJECT_ID=your_project_id
-   REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-   REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
-   REACT_APP_FIREBASE_APP_ID=your_app_id
+   
    ```
 
 ### Running the Application
 
 1. Start the backend server:
    ```bash
-   cd server
-   npm start
+   cd backend
+   npm run dev
    ```
 
 2. Start the frontend development server:
    ```bash
-   cd client
-   npm start
+   cd frontend
+   npm run start
    ```
 
 3. Open your browser and navigate to `http://localhost:3000` to see the application in action.
