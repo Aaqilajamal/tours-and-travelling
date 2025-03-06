@@ -1,59 +1,82 @@
 import User from "../models/User.js";
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
-// user register
+// User Register
 export const register = async (req, res) => {
    try {
-      //hashing password
-      const salt = bcrypt.genSaltSync(10)
-      const hash = bcrypt.hashSync(req.body.password, salt)
+      // Check if user already exists
+      const existingUser = await User.findOne({ email: req.body.email });
+      if (existingUser) {
+         return res.status(400).json({ success: false, message: "Email already registered!" });
+      }
+
+      // Hashing Password (Asynchronous for better performance)
+      const salt = await bcrypt.genSalt(10);
+      const hash = await bcrypt.hash(req.body.password, salt);
 
       const newUser = new User({
-         username: req.body.username,
+         username: req.body.username,  
          email: req.body.email,
          password: hash,
-         photo: req.body.photo
-      })
+         photo: req.body.photo,
+      });
 
-      await newUser.save()
+      await newUser.save();
 
-      res.status(200).json({ success: true, message: "Successfully created!" })
+      res.status(200).json({ success: true, message: "Successfully Registered!" });
    } catch (error) {
-      res.status(500).json({ success: false, message: "Failed to create! Try again." })
+      console.error(error.message);
+      res.status(500).json({ success: false, message: error.message || "Failed to Register! Try again." });
+      console.log(error.message)
    }
-}
+};
 
-// user login
+// User Login
 export const login = async (req, res) => {
    try {
-      const email = req.body.email
-      const user = await User.findOne({ email })
+      const { email, password } = req.body;
+      const user = await User.findOne({ email });
 
-      // if user doesn't exist
+      // If user doesn't exist
       if (!user) {
-         return res.status(404).json({ success: false, message: 'User not found!' })
+         return res.status(404).json({ success: false, message: 'User not found!' });
       }
 
-      // if user is exist then check the passord or compare the password
-      const checkCorrectPassword = await bcrypt.compare(req.body.password, user.password)
-
-      // if password incorrect 
-      if (!checkCorrectPassword) {
-         return res.status(401).json({ susccess: false, message: "Incorrect email or password!" })
+      // Compare Password
+      const isPasswordCorrect = await bcrypt.compare(password, user.password);
+      if (!isPasswordCorrect) {
+         return res.status(401).json({ success: false, message: "Incorrect Email or Password!" });
       }
 
-      const { password, role, ...rest } = user._doc
+      const { password: userPassword, role, ...otherDetails } = user.toObject();
 
-      // create jwt token
-      const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET_KEY, { expiresIn:"15d" })
+      // Ensure JWT Secret Key exists
+      if (!process.env.JWT_SECRET_KEY) {
+         throw new Error("JWT Secret Key is missing in environment variables.");
+      }
 
-      // set token in the browser cookies and send the response to the client
+      // Create JWT Token
+      const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET_KEY, {
+         expiresIn: "15d"
+      });
+
+      // Set Token in Browser Cookies
       res.cookie('accessToken', token, {
          httpOnly: true,
-         expires: token.expiresIn
-      }).status(200).json({token, data:{...rest}, role})
+         secure: process.env.NODE_ENV === 'production', // Secure cookies in production
+         sameSite: 'strict', 
+         maxAge: 15 * 24 * 60 * 60 * 1000 // 15 Days
+      }).status(200).json({
+         success: true,
+         message: "Login Successful",
+         token,
+         data: { ...otherDetails },
+         role
+      });
+
    } catch (error) {
-      res.status(500).json({ susccess: false, message: "Failed to login" })
+      console.error(error.message);
+      res.status(500).json({ success: false, message: error.message || "Failed to Login!" });
    }
-}
+};
